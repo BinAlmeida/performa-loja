@@ -1,0 +1,36 @@
+:root {
+  /* Paleta Oficial PERFORMA (Fiel à Referência) */
+  --bg-page: #141414;
+  --bg-header: #0f0f0f;
+  --bg-card: #191919;
+  --bg-surface: #1f1f1f;
+  --bg-input: #242424;
+
+  /* Laranja Vibrante da Marca */
+  --orange-primary: #e55b00;
+  --orange-hover: #ff6a09;
+  --orange-hero: #e47822;
+  --orange-card-media: #df5800;
+  --orange-border: #d95500;
+
+  /* Monocromáticos (Preto e Branco) */
+  --white: #ffffff;
+  --white-muted: #cccccc;
+  --gray-text: #9e9e9e;
+  --gray-btn: #dcdcdc;
+  --gray-btn-hover: #ffffff;
+  --black: #111111;
+  --black-pure: #000000;
+
+  /* Bordas e Sombras */
+  --border-subtle: rgba(255, 255, 255, 0.12);
+  --border-orange: 1px solid #d95500;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+
+  /* Tipografia */
+  --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --transition-fast: 0.2s ease;
+  --transition-smooth: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}

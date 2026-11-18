@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PERFORMA // Loja Esportiva Online</title>
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.png" />
+
+  <!-- CSS Personalizado Modular -->
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/components.css" />
+</head>
+<body>
+
+  <!-- =========================================================
+       1. HEADER / NAVBAR (DARK BAR + SUB-NAV LARANJA)
+       ========================================================= -->
+  <header class="site-header" id="topo">
+    <div class="header-top">
+      <div class="container d-flex flex-wrap align-items-center justify-content-between">
+        <!-- Logo PERFORMA -->
+        <a href="#topo" class="brand-logo" aria-label="PERFORMA Início">
+          <img class="brand-logo-image" src="assets/logo-performa.png" alt="PERFORMA" />
+        </a>
+
+        <!-- Busca rápida -->
+        <form class="header-search-bar" id="header-search-form">
+          <input
+            type="text"
+            id="header-search-input"
+            placeholder="Buscar tênis, corrida, futebol, roupas..."
+            aria-label="Buscar produtos"
+          />
+          <button type="submit" class="search-submit-btn" aria-label="Pesquisar">
+            <span data-icon="search"></span>
+          </button>
+        </form>
+
+        <!-- 4 Ícones simples em branco/preto (Fiel à foto de referência) -->
+        <div class="header-icon-actions">
+          <button
+            type="button"
+            class="header-icon-box"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#cartOffcanvas"
+            aria-label="Abrir carrinho">
+            <span data-icon="cart"></span>
+            <span class="cart-count-badge" id="cart-badge">0</span>
+          </button>
+
+          <a href="#topo" class="header-icon-box" aria-label="Início">
+            <span data-icon="home"></span>
+          </a>
+
+          <a href="#catalogo" class="header-icon-box" aria-label="Explorar catálogo">
+            <span data-icon="search"></span>
+          </a>
+
+          <a href="#contato" class="header-icon-box user-box" aria-label="Fale com a PERFORMA">
+            <span data-icon="user"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Barra de Categorias Laranja com texto preto -->
+    <nav class="category-subnav" aria-label="Categorias principais">
+      <div class="container subnav-container">
+        <button class="subnav-scroll-btn" type="button" id="subnav-prev" aria-label="Categorias anteriores">‹</button>
+        <ul class="subnav-list" id="subnav-list"></ul>
+        <button class="subnav-scroll-btn" type="button" id="subnav-next" aria-label="Próximas categorias">›</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- =========================================================
+         2. HERO BANNER (OLYMPIKUS X PERFORMA // CORRE 4)
+         ========================================================= -->
+    <section class="hero-banner hero-banner-image" id="hero" aria-label="Banner principal PERFORMA">
+      <img class="hero-background-image" src="assets/banner.png" alt="Banner principal da PERFORMA" />
+      <div class="hero-banner-overlay"></div>
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <p class="hero-collab-title">PERFORMA <span>•</span> LOJA ESPORTIVA</p>
+          <h1 class="hero-main-headline">SUPERE SEUS LIMITES.</h1>
+          <p class="hero-description">Encontre calçados, roupas e acessórios para acompanhar seu ritmo.</p>
+          <a href="#catalogo" class="btn-hero-cta">
+            <span>Explorar produtos</span><span data-icon="arrowRight"></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         3. PRODUTOS EM DESTAQUE (CATEGORIAS + PROMOÇÕES)
+         ========================================================= -->
+    <section class="section-block pb-2" id="categorias">
+      <div class="container">
+        <h2 class="section-title">CATEGORIAS DE PRODUTOS</h2>
+
+        <div class="categories-carousel-wrapper">
+          <div class="categories-track" id="categories-track"></div>
+          <button type="button" class="category-next-arrow category-prev-arrow" id="categories-prev" aria-label="Categorias anteriores">‹</button>
+          <button type="button" class="category-next-arrow" id="categories-next" aria-label="Próximas categorias">›</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-block" id="promocoes">
+      <div class="container">
+        <h2 class="section-title">PROMOÇÕES</h2>
+        <div class="row g-3" id="promocoes-grid"></div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         4. SEÇÃO DE BENEFÍCIOS
+         ========================================================= -->
+    <section class="benefits-section" id="beneficios">
+      <div class="container">
+        <div class="row g-3" id="benefits-grid"></div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         5. SOBRE A MARCA
+         ========================================================= -->
+    <section class="section-block about-section" id="sobre">
+      <div class="container">
+        <div class="about-card">
+          <div class="row g-0 align-items-center">
+            <div class="col-12 col-lg-5">
+              <div class="about-image-box">
+                <img
+                  src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=900&q=80"
+                  alt="Atleta treinando com equipamentos PERFORMA"
+                />
+                
+            </div>
+            <div class="col-12 col-lg-7">
+              <div class="about-content">
+                <span class="about-eyebrow">NOSSO DNA ESPORTIVO</span>
+                <h2>FEITA PARA QUEM BUSCA EVOLUIR A CADA TREINO</h2>
+                <p>
+                  A <strong>PERFORMA</strong> nasceu com o propósito de democratizar equipamentos e calçados esportivos de alta tecnologia no Brasil. Selecionamos modelos testados por corredores, atletas de quadra e praticantes de treino funcional.
+                </p>
+                <p class="mb-4">
+                  Unimos curadoria técnica, entrega expressa e atendimento especializado para garantir que você tenha o equipamento exato para superar seus limites.
+                </p>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         6. SEÇÃO DE PRODUTOS (CATÁLOGO COMPLETO FILTRÁVEL)
+         ========================================================= -->
+    <section class="section-block pt-2" id="catalogo">
+      <div class="container">
+        <h2 class="section-title">CATÁLOGO COMPLETO</h2>
+        <p class="section-subtitle">Filtre por modalidade, compare especificações e adicione ao carrinho sem sair da página.</p>
+
+        <div class="catalog-toolbar">
+          <div class="filter-pills" id="filter-pills" aria-label="Filtrar produtos por categoria"></div>
+
+          <div class="d-flex align-items-center gap-2">
+            <label for="catalog-sort-select" class="small text-secondary mb-0">Ordenar:</label>
+            <select id="catalog-sort-select" class="sort-select">
+              <option value="featured">Destaques</option>
+              <option value="price-asc">Menor Preço</option>
+              <option value="price-desc">Maior Preço</option>
+              <option value="discount">Maior Desconto</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="catalog-carousel-wrap">
+          <button type="button" class="catalog-scroll-btn" id="catalog-prev" aria-label="Produtos anteriores">‹</button>
+          <div class="catalog-products-track" id="catalog-grid"></div>
+          <button type="button" class="catalog-scroll-btn" id="catalog-next" aria-label="Próximos produtos">›</button>
+        </div>
+
+        <div class="text-center py-5 d-none" id="catalog-empty">
+          <p class="text-white fw-bold mb-2">Nenhum produto encontrado para este filtro.</p>
+          <button type="button" class="btn-orange-solid" id="btn-reset-filters">Mostrar Todos os Produtos</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         8. FAQ (BOOTSTRAP 5 ACCORDION)
+         ========================================================= -->
+    <section class="section-block" id="faq">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 col-lg-9">
+            <h2 class="section-title text-center">PERGUNTAS FREQUENTES (FAQ)</h2>
+            <div class="accordion performa-accordion" id="faqAccordion"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         9. CTA FINAL
+         ========================================================= -->
+    <section class="final-cta-section">
+      <div class="container">
+        <div class="final-cta-box">
+          <h2>PRONTO PARA ELEVAR SUA PERFORMANCE?</h2>
+          <p>
+            Garanta até 33% de desconto nos lançamentos esportivos e utilize o cupom <strong>PERFORMA10</strong> no carrinho para ganhar mais 10% OFF.
+          </p>
+          <a href="#promocoes" class="btn-hero-cta">
+            <span>Aproveitar Promoções Agora</span>
+            <span data-icon="arrowRight"></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         CONTATO: FORMULÁRIO ONE PAGE (4 CAMPOS)
+         ========================================================= -->
+    <section class="section-block" id="contato">
+      <div class="container">
+        <div class="row g-4 align-items-start">
+          <div class="col-lg-5">
+            <p class="section-kicker">ATENDIMENTO PERFORMA</p>
+            <h2 class="section-title">FALE COM A GENTE</h2>
+            <p class="section-subtitle">Envie sua dúvida, sugestão ou solicitação. Preencha os quatro campos e receba um retorno da nossa equipe.</p>
+            <p class="text-secondary mb-1">E-mail: suporte@performasport.com.br</p>
+          </div>
+          <div class="col-lg-7">
+            <form id="contact-form" class="p-4 rounded-3 border border-secondary" novalidate>
+              <div class="mb-3">
+                <label for="contact-name" class="form-label">Nome</label>
+                <input id="contact-name" name="name" class="form-control" autocomplete="name" required minlength="2" />
+                <div class="invalid-feedback">Informe seu nome.</div>
+              </div>
+              <div class="mb-3">
+                <label for="contact-email" class="form-label">E-mail</label>
+                <input id="contact-email" name="email" type="email" class="form-control" autocomplete="email" required />
+                <div class="invalid-feedback">Informe um e-mail válido.</div>
+              </div>
+              <div class="mb-3">
+                <label for="contact-subject" class="form-label">Assunto</label>
+                <input id="contact-subject" name="subject" class="form-control" required minlength="3" />
+                <div class="invalid-feedback">Informe o assunto.</div>
+              </div>
+              <div class="mb-3">
+                <label for="contact-message" class="form-label">Mensagem</label>
+                <textarea id="contact-message" name="message" class="form-control" rows="5" required minlength="10"></textarea>
+                <div class="invalid-feedback">Escreva uma mensagem com pelo menos 10 caracteres.</div>
+              </div>
+              <button class="btn-orange-solid" type="submit" id="contact-submit">ENVIAR MENSAGEM</button>
+              <p id="contact-feedback" class="small mt-3 mb-0" role="status" aria-live="polite"></p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         10. NEWSLETTER
+         ========================================================= -->
+    <section class="newsletter-section" id="newsletter">
+      <div class="container">
+        <div class="d-flex flex-column flex-lg-row align-items-lg-center justify-content-between gap-3">
+          <div>
+            <h2 class="h5 fw-bold text-white mb-1">RECEBA OFERTAS E LANÇAMENTOS EXCLUSIVOS</h2>
+            <p class="small text-secondary mb-0">Cadastre seu e-mail e ganhe 10% de desconto na sua primeira compra.</p>
+          </div>
+          <form class="newsletter-form" id="newsletter-form">
+            <input type="email" id="newsletter-email" placeholder="Digite seu melhor e-mail..." required />
+            <button type="submit" class="btn-orange-solid">CADASTRAR</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================================
+       11. FOOTER
+       ========================================================= -->
+  <footer class="site-footer" id="footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-12 col-md-4">
+          <div class="brand-logo align-items-start mb-3">
+            <img class="brand-logo-image" src="assets/logo-performa.svg" alt="PERFORMA" />
+          </div>
+          <p class="small mb-3">
+            Loja digital especializada em calçados de corrida, chuteiras, vestuário técnico e acessórios esportivos de alta performance.
+          </p>
+          <div class="footer-icons-row">
+            <a href="#topo" class="footer-icon-btn" aria-label="Início"><span data-icon="home"></span></a>
+            <a href="#catalogo" class="footer-icon-btn" aria-label="Buscar"><span data-icon="search"></span></a>
+            <button type="button" class="footer-icon-btn bg-transparent" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas" aria-label="Carrinho">
+              <span data-icon="cart"></span>
+            </button>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-2">
+          <h3 class="footer-title">Navegação</h3>
+          <ul class="footer-links">
+            <li><a href="#hero">Banner principal</a></li>
+            <li><a href="#categorias">Categorias</a></li>
+            <li><a href="#promocoes">Promoções</a></li>
+            <li><a href="#catalogo">Catálogo Completo</a></li>
+          </ul>
+        </div>
+
+        <div class="col-6 col-md-3">
+          <h3 class="footer-title">Institucional</h3>
+          <ul class="footer-links">
+            <li><a href="#sobre">Sobre a Performa</a></li>
+            <li><a href="#beneficios">Frete e Entregas</a></li>
+            
+            <li><a href="#faq">Dúvidas Frequentes</a></li>
+            <li><a href="#contato">Contato</a></li>
+          </ul>
+        </div>
+
+        <div class="col-12 col-md-3">
+          <h3 class="footer-title">Atendimento</h3>
+          <ul class="footer-links">
+            <li>Segunda a Sexta: 08h às 19h</li>
+            <li>suporte@performasport.com.br</li>
+            <li>Pagamento Seguro (PIX e Cartão)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 PERFORMA Esportes. Todos os direitos reservados.</span>
+        <span>Projeto One Page E-commerce — HTML5, CSS3, Bootstrap 5 &amp; JavaScript ES6</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================
+       MODAL: VER DETALHES DO PRODUTO (QUICK VIEW)
+       ========================================================= -->
+  <div class="modal fade performa-modal" id="productDetailsModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title h6 fw-bold text-uppercase" id="modal-product-title">Detalhes do Produto</h3>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row g-4 align-items-center">
+            <div class="col-12 col-md-5">
+              <div class="product-media-box" style="height: 240px;">
+                <img id="modal-product-img" src="" alt="Produto selecionado" />
+              </div>
+            </div>
+            <div class="col-12 col-md-7">
+              <div id="modal-product-rating" class="mb-2"></div>
+              <span class="product-old-price" id="modal-product-old-price"></span>
+              <div class="d-flex align-items-baseline gap-2 mb-2">
+                <strong class="h4 fw-bold text-white mb-0" id="modal-product-price"></strong>
+                <span class="badge bg-warning text-dark fw-bold" id="modal-product-discount"></span>
+              </div>
+              <p class="small text-secondary mb-3" id="modal-product-desc"></p>
+
+              <div class="mb-3">
+                <span class="d-block small fw-semibold mb-1">Cor: <strong id="modal-selected-color"></strong></span>
+                <div class="d-flex flex-wrap gap-2" id="modal-colors-wrap"></div>
+              </div>
+
+              <div class="mb-3">
+                <span class="d-block small fw-semibold mb-1">Escolha o Tamanho:</span>
+                <div class="d-flex flex-wrap gap-2" id="modal-sizes-wrap"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-light btn-sm" data-bs-dismiss="modal">Continuar vendo</button>
+          <button type="button" class="btn-orange-solid" id="modal-add-to-cart-btn">Adicionar ao Carrinho</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       OFFCANVAS: CARRINHO DE COMPRAS INTERATIVO
+       ========================================================= -->
+  <div class="offcanvas offcanvas-end performa-offcanvas" tabindex="-1" id="cartOffcanvas" aria-labelledby="cartOffcanvasLabel">
+    <div class="offcanvas-header">
+      <h3 class="offcanvas-title h6 fw-bold text-uppercase d-flex align-items-center gap-2" id="cartOffcanvasLabel">
+        <span data-icon="cart"></span>
+        <span>Seu Carrinho</span>
+      </h3>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Fechar carrinho"></button>
+    </div>
+    <div class="offcanvas-body d-flex flex-column">
+      <div id="cart-items-list" class="flex-grow-1 overflow-auto pe-1"></div>
+
+      <div class="pt-3 border-top border-secondary">
+        <div class="input-group input-group-sm mb-3">
+          <input type="text" id="cart-coupon-input" class="form-control bg-dark text-white border-secondary" placeholder="Cupom (ex: PERFORMA10)" />
+          <button class="btn btn-outline-light" type="button" id="apply-coupon-btn">Aplicar</button>
+        </div>
+
+        <div class="d-flex justify-content-between small text-secondary mb-1">
+          <span>Subtotal:</span>
+          <span id="cart-subtotal" class="text-white">R$ 0,00</span>
+        </div>
+        <div class="d-flex justify-content-between small text-secondary mb-1">
+          <span>Frete:</span>
+          <span id="cart-shipping" class="text-white">GRÁTIS</span>
+        </div>
+        <div class="d-flex justify-content-between small text-warning mb-2 d-none" id="cart-discount-row">
+          <span>Desconto (10%):</span>
+          <span id="cart-discount-val">- R$ 0,00</span>
+        </div>
+        <div class="d-flex justify-content-between fw-bold fs-6 text-white mb-3 pt-2 border-top border-secondary">
+          <span>Total:</span>
+          <span id="cart-total">R$ 0,00</span>
+        </div>
+
+        <button type="button" class="btn-orange-solid w-100" id="btn-open-checkout" disabled>
+          FINALIZAR COMPRA
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       MODAL: CONFIRMAÇÃO DE PEDIDO
+       ========================================================= -->
+  <div class="modal fade performa-modal" id="checkoutInfoModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content text-center p-3">
+        <div class="modal-body text-start">
+          <h3 class="h5 fw-bold mb-3">FINALIZAR PEDIDO</h3>
+          <form id="checkout-form">
+            <div class="mb-2"><label class="form-label small" for="checkout-name">Nome completo</label><input id="checkout-name" name="name" class="form-control bg-dark text-white border-secondary" required minlength="3"></div>
+            <div class="mb-2"><label class="form-label small" for="checkout-email">E-mail</label><input id="checkout-email" name="email" type="email" class="form-control bg-dark text-white border-secondary" required></div>
+            <div class="mb-2"><label class="form-label small" for="checkout-phone">Telefone</label><input id="checkout-phone" name="phone" class="form-control bg-dark text-white border-secondary" required></div>
+            <div class="mb-2"><label class="form-label small" for="checkout-cep">CEP</label><input id="checkout-cep" name="cep" class="form-control bg-dark text-white border-secondary" required maxlength="9"></div>
+            <div class="mb-2"><label class="form-label small" for="checkout-address">Endereço e número</label><input id="checkout-address" name="address" class="form-control bg-dark text-white border-secondary" required></div>
+            <div class="row g-2 mb-3"><div class="col-7"><label class="form-label small" for="checkout-city">Cidade</label><input id="checkout-city" name="city" class="form-control bg-dark text-white border-secondary" required></div><div class="col-5"><label class="form-label small" for="checkout-state">UF</label><input id="checkout-state" name="state" maxlength="2" class="form-control bg-dark text-white border-secondary" required></div></div>
+            <p class="small text-secondary">Demonstração acadêmica: os dados do pedido ficam salvos somente no armazenamento local deste navegador. Não há cobrança, envio ao servidor ou confirmação comercial.</p>
+            <button type="submit" class="btn-orange-solid w-100" id="checkout-submit">REGISTRAR PEDIDO DEMONSTRATIVO</button>
+          </form>
+          <p id="checkout-feedback" class="small mt-3" role="status"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast de Feedback -->
+  <div class="performa-toast" id="performa-toast" role="status" aria-live="polite">
+    <span data-icon="check"></span>
+    <span id="toast-message">Produto adicionado ao carrinho!</span>
+  </div>
+
+  <!-- Bootstrap 5 JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Configuração pública do formulário e aplicação ES6 -->
+  <script src="js/config.js"></script>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
