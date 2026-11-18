@@ -115,7 +115,7 @@ A aplicação será disponibilizada publicamente por meio do GitHub Pages, servi
 A publicação permite acessar o projeto diretamente pelo navegador, sem necessidade de instalação de programas ou execução de um servidor local.
 
 **Link de acesso ao projeto:** 
-
+https://binalmeida.github.io/performa-loja/
 
 ## 9. Considerações Finais
 
